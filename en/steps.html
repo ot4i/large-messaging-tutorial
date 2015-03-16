@@ -43,7 +43,7 @@
 	</div>
 	<div class="row">
 	  <div class="small-9 medium-9 large-9 columns">
-	    <h4>HTTP Input to drive a message flow</h4>
+	    <h4>Large messaging</h4>
 	  </div>
 	  <div class="small-3 medium-3 large-3 columns">
 		<a href="javascript:;" onclick="openHelpSystem('/com.ibm.etools.msgbroker.helphome.doc/help_home_msgbroker.htm')" class="small right helplink">IBM Knowledge Center</a> 
@@ -52,7 +52,7 @@
 	<hr>
 	<div class="row">
 		<div class="small-10 medium-10 large-10 columns">
-		<h5> Learn how to use an HTTPInput node to parse JSON data in an IBM Integration Bus message flow by exploring this simple example. </h5>
+		<h5> Split a large input message into individual records, using Java transformation code, in a memory-efficient manner. </h5>
 		</div>
 		<div class="small-2 medium-2 large-2 columns">
 			<div class="small radius button right" id="backToGallery" onclick="backToGallery()"> Back To Gallery
@@ -83,9 +83,11 @@
 					      	<h4>Overview</h4>
 					        
 						    
-								<p> This tutorial demonstrates a simple message flow that receives JSON data over HTTP. The flow transforms the input JSON structure into a different output JSON structure using a graphical data mapping node and sends this back to the HTTP request. </p>
+								<p> This tutorial demonstrates how to convert an input file that contains a single large XML document, and split it into multiple output files, one for each instance of a repeating element in that document. It uses Java transformation code and avoids fully parsing the entire input file, which minimizes the amount of memory that is consumed during processing. </p>
 							
-								<p> You will import the message flow to your Integration Toolkit workspace, deploy it to your default integration server, and invoke the message flow by using the Flow exerciser. </p>
+								<p> The solution uses a JavaCompute node to process a large input XML message that contains sales data, in the form of a list of SaleList child XML elements. The input message is split into 10 individual messages by creating a new message from each SaleList child element. In this tutorial, FileInput and FileOutput nodes are used to handle the input and output messages. </p>
+							
+								<p> You will import the LargeMessaging application to your Integration Toolkit workspace, deploy it to your default integration server, and create a test  message in an input directory that will be processed by the flow. You will record the path taken through the message flow by using the Flow Exerciser. </p>
 							
 						</div>
 							
@@ -95,7 +97,12 @@
 							
 								
 																
-								<li> <a href="javascript:;" onclick="openHelpSystem('/com.ibm.etools.mft.doc/bi12002_.htm')" title="Knowledge Center link to Developing integration solutions by using applications">Developing integration solutions by using applications</a> </li>
+								<li> <a href="javascript:;" onclick="openHelpSystem('/com.ibm.etools.mft.doc/ac30300_.htm')" title="Knowledge Center link to Writing Java">Writing Java</a> </li>
+							   	
+							
+								
+																
+								<li> <a href="javascript:;" onclick="openHelpSystem('/com.ibm.etools.mft.doc/ac55170_.htm')" title="Knowledge Center link to Working with files">Working with files</a> </li>
 							   	
 							
 							</ul>
@@ -111,7 +118,7 @@
 					      	<h4>Import projects</h4>
 					        
 						    
-								<p> The HTTPInputApplication application includes one project that is imported into your workspace. </p>
+								<p> The Large messaging tutorial includes one project that is imported into your workspace, and the message flow is opened in the editor. </p>
 								
 							
 						</div>
@@ -122,7 +129,12 @@
 							
 								
 																
-								<li> <a href="javascript:;" onclick="openHelpSystem('/com.ibm.etools.mft.doc/bi12002_.htm')" title="Knowledge Center link to Developing integration solutions by using applications">Developing integration solutions by using applications</a> </li>
+								<li> <a href="javascript:;" onclick="openHelpSystem('/com.ibm.etools.mft.doc/ac30300_.htm')" title="Knowledge Center link to Writing Java">Writing Java</a> </li>
+							   	
+							
+								
+																
+								<li> <a href="javascript:;" onclick="openHelpSystem('/com.ibm.etools.mft.doc/ac55170_.htm')" title="Knowledge Center link to Working with files">Working with files</a> </li>
 							   	
 							
 							</ul>
@@ -143,16 +155,40 @@
 					<div class="small-12 medium-12 large-12 columns">
 					
 						<div class="row content-details">
-						  	<h4>Imported projects</h4>
+						  	<h4>Prepare your development environment</h4>
 						    
 						    
-								<p> The HTTPInputApplication application is shown in the Application Development view of your workspace. </p>
+								<p> The Large messaging application has been imported into your workspace as LargeMessaging, and is shown in the Application Development view of your workspace. The main message flow opens in the message flow editor. </p>
 								
 							
-								<p>  </p>
+								<p> The FileInput node MessageWithRepeatingElements monitors an input directory on the file system for files to process. By default, this is set to <code>C:\temp_in</code>. </p>
+								
+								
+									
+									<ol>
+									
+									
+										<li> Create the input directory <code>C:\temp_in</code> on your file system.
+										
+										
+											
+											<ul>
+											
+												
+													<li> If you are using Linux, first change the Input directory property of the MessageWithRepeatingElements node.</li>
+												
+											
+											</ul>
+											
+										
+										</li>
+									
+									
+									</ol>
+									
 								
 							
-								<p> The application will be deployed to your default integration server. The message flow is then running on your integration server and ready to process messages. </p>
+								<p> In the message flow, the memory-efficient record splitting is performed by the JavaCompute node labelled ProduceMessageSlicesFromRepeatingElements. You can double-click this node to see the Java code that is run. </p>
 								
 							
 						</div>
@@ -163,7 +199,12 @@
 							
 								
 																
-								<li> <a href="javascript:;" onclick="openHelpSystem('/com.ibm.etools.mft.doc/bi12002_.htm')" title="Knowledge Center link to Developing integration solutions by using integration services">Developing integration solutions by using integration services</a> </li>
+								<li> <a href="javascript:;" onclick="openHelpSystem('/com.ibm.etools.mft.doc/ac30300_.htm')" title="Knowledge Center link to Writing Java">Writing Java</a> </li>
+							   	
+							
+								
+																
+								<li> <a href="javascript:;" onclick="openHelpSystem('/com.ibm.etools.mft.doc/ac55170_.htm')" title="Knowledge Center link to Working with files">Working with files</a> </li>
 							   	
 							
 							</ul>
@@ -180,22 +221,46 @@
 					      	<h4>Follow these steps to complete the tutorial</h4>
 					        
 						    
-								<p> The HTTPInputApplication application is shown in the Application Development view of your workspace. </p>
+								<p> The LargeMessaging application is shown in the Application Development view of your workspace, and the LargeMessages main message flow is shown in the message flow editor. </p>
 								
 								
 									
 									<ol>
 									
 									
-										<li> Open the HTTPInputMessageFlow, and click the Flow Exerciser icon <img src="http://ot4i.github.io/ot4i.tutorials/dist/images/icons/iib/startFlowExerciser.png" alt=""> to start recording the message path through the flow.
+										<li> In the message flow editor, click the Flow Exerciser record icon <img src="http://ot4i.github.io/ot4i.tutorials/dist/images/icons/iib/startFlowExerciser.png" alt=""> to start recording the message path through the flow.
+										
+										
+											
+											<ul>
+											
+												
+													<li> The application is deployed to your default integration server, and the message flow is then running on your integration server and ready to process messages.</li>
+												
+													<li> When the message is processed, you will see the path taken through the flow.</li>
+												
+											
+											</ul>
+											
 										
 										</li>
 									
-										<li> Click the Send Message icon <img src="http://ot4i.github.io/ot4i.tutorials/dist/images/icons/iib/sendMessage.png" alt=""> to select a message to send to the flow.
+										<li> Copy the test XML message from <code>&lt;Integration Toolkit workspace&gt;/Large Messages/inputSalesList.xml</code> to the input directory that you created on your file system.
+										
+										
+											
+											<ul>
+											
+												
+													<li> The file is processed by the message flow and deleted.</li>
+												
+											
+											</ul>
+											
 										
 										</li>
 									
-										<li> Choose the ExampleInputMessage1, edit the message data if you like, and click Send. Your request message is sent to the HTTP input node.
+										<li> In the Integration Toolkit Flow Exerciser toolbar, click the View Path icon <img src="http://ot4i.github.io/ot4i.tutorials/dist/images/icons/iib/viewPath.png" alt="View path"> to highlight the message path through the message flow. You can click on any highlighted connection to see the message data that passed through that connection.
 										
 										</li>
 									
@@ -204,10 +269,10 @@
 									
 								
 							
-								<p> After the request message is processed, the message path is automatically highlighted on the message flow. </p>
+								<p> The input data has been split into 10 messages propagated to the Out terminal of the JavaCompute node named ProduceMessageSlicesFromRepeatingElement. You can double-click on the JavaCompute node to view the Java code that is executed to process the input message. </p>
 								
 							
-								<p> Click on any connection to see the data that passed through that connection. You can see that the request (input) message data has two fields named InputField1 and InputField2. The response (output) message has converted this to fields named OutputField1 and OutputField2. </p>
+								<p> To observe how the Java code works on the message tree, you can step through the code by using the Flow debugger while the flow processes the input message. You should observe that elements which have already been processed are freed from memory. </p>
 								
 							
 								<p> To stop recording the message path through the flow, click the Return flow to edit mode icon <img src="http://ot4i.github.io/ot4i.tutorials/dist/images/icons/iib/stopFlowExerciser.png" alt="Return flow to edit mode">. </p>
@@ -221,12 +286,22 @@
 							
 								
 																
-								<li> <a href="javascript:;" onclick="openHelpSystem('/com.ibm.etools.mft.doc/bi12002_.htm')" title="Knowledge Center link to Developing integration solutions by using applications">Developing integration solutions by using applications</a> </li>
+								<li> <a href="javascript:;" onclick="openHelpSystem('/com.ibm.etools.mft.doc/ac30300_.htm')" title="Knowledge Center link to Writing Java">Writing Java</a> </li>
+							   	
+							
+								
+																
+								<li> <a href="javascript:;" onclick="openHelpSystem('/com.ibm.etools.mft.doc/ac55170_.htm')" title="Knowledge Center link to Working with files">Working with files</a> </li>
 							   	
 							
 								
 																
 								<li> <a href="javascript:;" onclick="openHelpSystem('/com.ibm.etools.mft.doc/rt26110_.htm')" title="Knowledge Center link to Testing your message flow by using the Flow exerciser">Testing your message flow by using the Flow exerciser</a> </li>
+							   	
+							
+								
+																
+								<li> <a href="javascript:;" onclick="openHelpSystem('/com.ibm.etools.mft.doc/ag11080_.htm')" title="Knowledge Center link to Testing your message flow by using the Flow debugger">Testing your message flow by using the Flow debugger</a> </li>
 							   	
 							
 							</ul>

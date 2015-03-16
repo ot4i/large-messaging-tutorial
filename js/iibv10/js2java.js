@@ -66,7 +66,7 @@
 
       }//try
       catch(e){
-          alert( 'a java error in javaGetSelectedTutorialFunction occurred: ' + e.message );
+          alert( 'a java error in startTutorialFromDetailsScreen occurred: ' + e.message );
       }//catch
 
       var tutUrl = null;
@@ -102,7 +102,7 @@
 	   }//try
 	   catch(e)
 	   {
-		   alert( 'a java error in javaSetSelectedTutorialFunction occurred: ' + e.message );
+		   alert( 'a java error in resetSelection occurred: ' + e.message );
 	   }//catch   
    };
    
@@ -138,7 +138,7 @@
 	   }//try
 	   catch(e)
 	   {
-		   alert( 'a java error in javaSetSelectedTutorialFunction occurred: ' + e.message );
+		   alert( 'a java error in changeFunc occurred: ' + e.message );
 	   }//catch    
    };
 

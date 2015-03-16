@@ -43,7 +43,7 @@
   </div>
   <div class="row">
     <div class="small-9 medium-9 large-9 columns">
-      <h4>HTTP Input to drive a message flow</h4>
+      <h4>Large messaging</h4>
     </div>
     <div class="small-3 medium-3 large-3 columns"> 
       <a href="javascript:;" onclick="openHelpSystem('/com.ibm.etools.msgbroker.helphome.doc/help_home_msgbroker.htm')" class="small right helplink">IBM Knowledge Center</a>
@@ -52,7 +52,7 @@
   <hr>
   <div class="row">
     <div class="small-12 medium-12 large-12 columns">
-      <h5> Learn how to use an HTTPInput node to parse JSON data in an IBM Integration Bus message flow by exploring this simple example. </h5>
+      <h5> Split a large input message into individual records, using Java transformation code, in a memory-efficient manner. </h5>
     </div>
   </div>
   <div class="row content-details">
@@ -63,9 +63,9 @@
       <div class="row">
       
         
-        <p> This tutorial demonstrates a simple message flow that receives JSON data over HTTP. The flow transforms the input JSON structure into a different output JSON structure using a graphical data mapping node, and sends this back to the HTTP request. </p>
+        <p> This tutorial demonstrates how to convert an input file that contains a single large XML document, and split it into multiple output files, one for each instance of a repeating element in that document. </p>
       
-        <p> In IBM Integration Bus, an application is a container for all the resources that are required to create a solution. An application can contain IBM Integration Bus resources, such as flows, message definitions, libraries, and JAR files. An application is used to hold the message flow in this tutorial.  If you have a WSDL document that describes a SOAP/HTTP interface you might consider using an integration service instead. See the Integration services (SOAP/HTTP inputs) tutorial for more details. </p>
+        <p> This implementation uses Java transformation code and avoids fully parsing the entire input file, which minimizes the amount of memory that is consumed during processing. </p>
       
       </div>
     </div><!-- End Columns -->
@@ -96,11 +96,11 @@
           <ul>
             
             
-              <li>HTTP Input node</li>
+              <li>Transformation using Java</li>
             
-              <li>JSON parsing and writing</li>
+              <li>Working with files</li>
             
-              <li>Transformation using graphical data mapping</li>
+              <li>Splitting a large message</li>
             
           </ul>
         </div>
@@ -109,7 +109,7 @@
           <ul>
           
           
-            <li>Use IBM Integration Bus to create and invoke a JSON/HTTP request-response message flow.</li>
+            <li>Use Java in a message flow to transform data.</li>
           
           </ul>
         </div>

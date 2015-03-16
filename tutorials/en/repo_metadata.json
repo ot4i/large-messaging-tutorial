@@ -12,35 +12,33 @@
       "visible": "true",
       "tutorials": [
 	{
-		"name"          : "Large messaging",
-		"version"	: "1.0",
-		"iibVersions"	: "10.*-11.*",
-		"shortDesc"     : "Learn how to use an HTTPInput node to parse JSON data in an IBM Integration Bus message flow by exploring this simple example",
-		"detailsURL"    : "http://ot4i.github.io/large-messaging-tutorial/docs/en/details.html",
-		"stepsURL"      : "http://ot4i.github.io/large-messaging-tutorial/docs/en/steps.html",
-		"zipURL"        : "https://github.com/ot4i/large-messaging-tutorial/releases/download/V1/LargeMessages.zip",
-		"barFile"       : "<workspace>/BARfiles/LargeMessages.bar",
-		"visible"	: "true",
-		"tags"		: "java;transformation",
-		"isPattern"	: "false",
-		"isFavorite"	: "true",
-		"projects"	: "LargeMessages:LargeMessagesJava:BARfiles",
-		"editorResPaths"   : 
-			[
-				{
-					"id" : "MainFlow",
-					"editor" : "flow",
-					"wspath" : "<workspace>/LargeMessages/LargeMessages.msgflow"
-				}
-			],
-		"deployedResources" : 
-			[
-				{
-					"type": "application",
-					"path": "LargeMessages"
-				}
-			]
-	},
+       	       "name"          : "Large messaging",
+		            	"version"		: "1.0",
+		            	"iibVersions"	: "10.*-11.*",
+		            	"shortDesc"     : "Split a large input message into individual records, using Java transformation code, in a memory-efficient manner.",
+		            	"detailsURL"    : "http://ot4i.github.io/large-messaging-tutorial/en/details.html",
+		            	"stepsURL"      : "http://ot4i.github.io/large-messaging-tutorial/en/steps.html",
+		            	"zipURL"        : "https://github.com/ot4i/ot4i.tutorials/releases/download/V1/LargeMessages.zip",
+		            	"barFile"       : "<workspace>/BARfiles/LargeMessages.bar",
+		            	"visible"	: "true",
+		            	"tags"		: "java;transformation",
+		            	"isPattern"	: "false",
+		            	"isFavorite"	: "true",
+		            	"projects"	: "LargeMessages:LargeMessagesJava:BARfiles",
+		            	"editorResPaths"   : [
+		            				{
+		            				"id" : "MainFlow",
+		            				"editor" : "flow",
+		            			  	"wspath" : "<workspace>/LargeMessages/LargeMessages.msgflow"
+		            				}
+		            			],
+				"deployedResources" : [
+							{
+							"type": "application",
+							"path": "LargeMessages"
+							}
+						]
+				},
     {
       "name": "Scenarios",
       "description": "Explore powerful Integration Bus capabilities through integrated scenarios",
