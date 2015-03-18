@@ -1,5 +1,5 @@
 {
-  "version":"0.6",
+  "version":"0.5",
   "pageContent": 
   {
     "comments":"Must use underscore for en-us.",
@@ -7,15 +7,19 @@
       {
         "_common":
         {
-          "buttonBackToGallery":
-          {
-            "text":"Back To Gallery"
-          },
-          "buttonStartTutorial":
-          {
-            "text":"Start Tutorial"
-          }
-		}
+                "buttonBackToGallery": 
+				{
+                    "name": "Back To Gallery",
+					"method": "backToGallery()",
+					"idName": "backToGallery"	
+                },
+                "buttonStartTutorial": 
+				{
+                    "name": "Start Tutorial",
+					"method": "startTutorialFromDetailsScreen()",
+					"idName": "startTutorial"
+                }
+        }
 	}
   },
   "tutorial": 
@@ -26,7 +30,12 @@
       "durationText":"This tutorial takes approximately",
       "durationTime":"5 minutes",
 	  "_resourceToOpenComment": "The ID of the first resource to open when the user imports the tutorial. Resource IDs are defined in the repo_metadata.json Tutorials listing on ot4i.",
-	  "resourceToOpen":"MainFlow"
+	  "resourceToOpen":"MainFlow",
+            "helpLink": 
+			{
+                "text": "IBM Knowledge Center",
+                "link": "/com.ibm.etools.msgbroker.helphome.doc/help_home_msgbroker.htm"
+            }
     },
     "pageDetails":
     {
@@ -57,8 +66,11 @@
           "sections":
           [
             {
-            "section":"This tutorial uses a JavaCompute node to process a large input XML message that contains sales data, in the form of a list of SaleList child XML elements. The input message is split into 10 individual messages by creating a new message from each SaleList child element."
-            }
+            "section":"This tutorial demonstrates how to convert an input file that contains a single large XML document, and split it into multiple output files, one for each instance of a repeating element in that document."
+            },
+			{
+			"section":"This implementation uses Java transformation code and avoids fully parsing the entire input file, which minimizes the amount of memory that is consumed during processing."
+			}
           ]
         }
       },
@@ -73,8 +85,11 @@
 			"_overviewComment": "A short description of what this tutorial does, and what the user will do to run the tutorial.",
             "sections":
             [
+			  {
+              "section":"This tutorial demonstrates how to convert an input file that contains a single large XML document, and split it into multiple output files, one for each instance of a repeating element in that document. It uses Java transformation code and avoids fully parsing the entire input file, which minimizes the amount of memory that is consumed during processing."
+              },
               {
-              "section":"This tutorial uses a JavaCompute node to process a large input XML message that contains sales data, in the form of a list of SaleList child XML elements. The input message is split into 10 individual messages by creating a new message from each SaleList child element. In this tutorial, FileInput and FileOutput nodes are used to handle the input and output messages."
+              "section":"The solution uses a JavaCompute node to process a large input XML message that contains sales data, in the form of a list of SaleList child XML elements. The input message is split into 10 individual messages by creating a new message from each SaleList child element. In this tutorial, FileInput and FileOutput nodes are used to handle the input and output messages."
               },
               {
               "section":"You will import the LargeMessaging application to your Integration Toolkit workspace, deploy it to your default integration server, and create a test  message in an input directory that will be processed by the flow. You will record the path taken through the message flow by using the Flow Exerciser."
@@ -111,19 +126,7 @@
             "sections":
             [
               {
-                "section":"The Large Messaging tutorial includes one project that is imported into your workspace."
-              }
-            ]
-          },
-          "description":
-          {
-            "sections":
-            [
-              {
-                "section":"Large Messaging tutorial."
-              },
-              {
-                "section":"The Large Messaging tutorial includes one project that is imported into your workspace."
+                "section":"The Large messaging tutorial includes one project that is imported into your workspace, and the message flow is opened in the editor."
               }
             ]
           },
@@ -145,38 +148,57 @@
 				}
 			  ]
 		    },
-			"actionName":"Import"
+                "actions": 
+				{
+                    "title": "Create Actions",
+                    "details": 
+					[
+                        {
+                            "name": "Import",
+                            "method": "importArtifacts()"
+                        }
+                    ]
+                }
         },
         "prepare":
         {
           "overview":
           {
             "name":"Prepare",
-            "heading":"Imported projects",
+            "heading":"Prepare your development environment",
 			"_prepareComment": "A description of what just happened when the user clicked Import, and what will happen when the user clicks Deploy.",
             "sections":
             [
               {
-                "section":"The Large Messaging application has been imported into your workspace as LargeMessaging, and is shown in the Application Development view of your workspace."
-              }, 
-              {
-                "section":"The application will be deployed to your default integration server. The message flow is then running on your integration server and ready to process messages."
-              }
-            ]
-          },
-          "description":
-          {
-            "comment":"",
-            "name":"Deploy details",
-            "heading":"",
-            "sections":
-            [
-              {
-                "section":"The application will be deployed to your default integration server."
+                "section":"The Large messaging application has been imported into your workspace as LargeMessaging, and is shown in the Application Development view of your workspace. The main message flow opens in the message flow editor."
               },
               {
-                "section":"The message flow is then running on your integration server and ready to process messages."
-              }
+                "section":"The FileInput node MessageWithRepeatingElements monitors an input directory on the file system for files to process. By default, this is set to <code>C:\\temp_in</code>.",
+				"steps": 
+				{
+                "type":"ordered",
+                "details":
+                  [
+                    { 
+                      "name":"",
+                      "details":"Create the input directory <code>C:\\temp_in</code> on your file system.",
+					  "substeps": 
+						{
+							"type": "unordered",
+							"details": 
+							[
+								{
+									"details": "If you are using Linux, first change the Input directory property of the MessageWithRepeatingElements node."
+								}
+							]
+						}
+                    }
+                  ]
+                }
+              },
+			  {
+			  "section":"In the message flow, the memory-efficient record splitting is performed by the JavaCompute node labelled ProduceMessageSlicesFromRepeatingElements. You can double-click this node to see the Java code that is run."
+			  }
             ]
           },
           "helpLinks": 
@@ -197,7 +219,17 @@
 				}
 			  ]
 		   },
-		   "actionName":"Deploy"
+			"actions-removed": 
+				{
+                    "title": "Prepare Actions",
+                    "details": 
+					[
+                        {
+                            "name": "Deploy",
+                            "method": "deployArtifacts()"
+                        }
+                    ]
+                }
         },
         "run":
         {
@@ -210,48 +242,55 @@
 			"_runComment": "The full steps for the user to run through the tutorial. Use 'sections' to render paragraphs, 'steps' with a type of 'ordered' or 'unordered' to render HTML lists, and 'substeps' to render nested lists.",
             "sections":
             [
-			  {
-			   "section":"The LargeMessaging application is shown in the Application Development view of your workspace, and the LargeMessages main message flow is shown in the message flow editor."
-			  },
               {
-              "section":"You will create an input directory on your file system, and copy an input message into it for the flow to process.", 
+              "section":"The LargeMessaging application is shown in the Application Development view of your workspace, and the LargeMessages main message flow is shown in the message flow editor.", 
                 "steps":
                 {
                 "type":"ordered",
                 "details":
                   [
-                    { 
-                      "details":"In the message flow editor, click the Flow Exerciser record icon <img src='http://ot4i.github.io/ot4i.tutorials/dist/images/icons/iib/startFlowExerciser.png' alt='' /> to start recording the message path through the flow. When the message is processed, you will see the path taken through the flow."
-                    },
-                    { 
-                      "details":"The input node MessageWithRepeatingElements monitors an input directory on the file system. By default, this is set to <code>C:\\temp_in</code>."
-                    },
-					{ 
-                      "details":"Create an input directory on your file system that matches the directory that is monitored by the MessageWithRepeatingElements node.",
+					{
+                      "details":"In the message flow editor, click the Flow Exerciser record icon <img src='http://ot4i.github.io/ot4i.tutorials/dist/images/icons/iib/startFlowExerciser.png' alt='' /> to start recording the message path through the flow.",
 					  "substeps":
 					   { "type": "unordered",
 						  "details":
 							[
 							  {
-								"details":"Optional: You can change the default input directory by selecting the MessageWithRepeatingElements FileInput node and setting the Input directory property in the Properties view."
+								"details":"The application is deployed to your default integration server, and the message flow is then running on your integration server and ready to process messages."
+							  },
+							  {
+								"details":"When the message is processed, you will see the path taken through the flow."
 							  }
 							]
 					   }
                     },
 					{ 
-                      "details":"Copy the test XML message from <code>&lt;Integration Toolkit workspace&gt;/Large Messages/inputSalesList.xml</code> to the input directory."
+                      "details":"Create an input directory on your file system that matches the directory that is monitored by the MessageWithRepeatingElements node.",
+                      "details":"Copy the test XML message from <code>&lt;Integration Toolkit workspace&gt;/Large Messages/inputSalesList.xml</code> to the input directory that you created on your file system.",
+					  "substeps":
+					   { "type": "unordered",
+						  "details":
+							[
+							  {
+								"details":"The file is processed by the message flow and deleted."
+							  }
+							]
+					   }
+                    },
+					{ 
+                      "details":"In the Integration Toolkit Flow Exerciser toolbar, click the View Path icon <img src='http://ot4i.github.io/ot4i.tutorials/dist/images/icons/iib/viewPath.png' alt='View path' /> to highlight the message path through the message flow. You can click on any highlighted connection to see the message data that passed through that connection."
                     }
                   ]
                 }
               },
 			  {
-              "section":"The file is processed by the message flow and deleted."
-              },
-			  {
-			  "section":"In the Integration Toolkit Flow Exerciser toolbar, click the View Path icon <img src='http://ot4i.github.io/ot4i.tutorials/dist/images/icons/iib/viewPath.png' alt='View path' /> to highlight the message path through the message flow. You can click on any highlighted connection to see the message data that passed through that connection."
+			  "section":"The input data has been split into 10 messages propagated to the Out terminal of the JavaCompute node named ProduceMessageSlicesFromRepeatingElement. You can double-click on the JavaCompute node to view the Java code that is executed to process the input message."
 			  },
 			  {
-			  "section":"The input data has been split into 10 messages propagated to the Out terminal of the JavaCompute node named ProduceMessageSlicesFromRepeatingElement. You can double-click on the JavaCompute node to view the Java code that is executed to process the input message."
+			  "section":"To observe how the Java code works on the message tree, you can step through the code by using the Flow debugger while the flow processes the input message. You should observe that elements which have already been processed are freed from memory."
+			  },
+			  {
+			  "section":"To stop recording the message path through the flow, click the Return flow to edit mode icon <img src='http://ot4i.github.io/ot4i.tutorials/dist/images/icons/iib/stopFlowExerciser.png' alt='Return flow to edit mode' />."
 			  }
             ]
           },
@@ -275,9 +314,26 @@
 				"title":"Knowledge Center link to ",
 				"description":"Testing your message flow by using the Flow exerciser",
 				"link":"com.ibm.etools.mft.doc/rt26110_.htm"
+				},
+				{
+				"title":"Knowledge Center link to ",
+				"description":"Testing your message flow by using the Flow debugger",
+				"link":"com.ibm.etools.mft.doc/ag11080_.htm"
 				}
 			  ]
-		    }
+		    },
+				"exits": 
+				{
+					"title": "Run Exits",
+					"details": 
+					[
+						{
+							"name": "Clean Up",
+							"description": "Clean up and remove any changes in your workspace made by the tutorial.",
+							"method": "cleanUp()"
+						}
+					]
+				}
         } 
       }
     }
