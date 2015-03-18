@@ -250,7 +250,7 @@
                 "details":
                   [
 					{
-                      "details":"In the message flow editor, click the Flow Exerciser record icon <img src='http://ot4i.github.io/ot4i.tutorials/dist/images/icons/iib/startFlowExerciser.png' alt='' /> to start recording the message path through the flow.",
+                      "details":"In the message flow editor, click the Flow Exerciser record icon <img src='http://ot4i.github.io/iib-tutorials/images/icons/iib/startFlowExerciser.png' alt='' /> to start recording the message path through the flow.",
 					  "substeps":
 					   { "type": "unordered",
 						  "details":
@@ -278,7 +278,7 @@
 					   }
                     },
 					{ 
-                      "details":"In the Integration Toolkit Flow Exerciser toolbar, click the View Path icon <img src='http://ot4i.github.io/ot4i.tutorials/dist/images/icons/iib/viewPath.png' alt='View path' /> to highlight the message path through the message flow. You can click on any highlighted connection to see the message data that passed through that connection."
+                      "details":"In the Integration Toolkit Flow Exerciser toolbar, click the View Path icon <img src='http://ot4i.github.io/iib-tutorials/images/icons/iib/viewPath.png' alt='View path' /> to highlight the message path through the message flow. You can click on any highlighted connection to see the message data that passed through that connection."
                     }
                   ]
                 }
@@ -290,7 +290,7 @@
 			  "section":"To observe how the Java code works on the message tree, you can step through the code by using the Flow debugger while the flow processes the input message. You should observe that elements which have already been processed are freed from memory."
 			  },
 			  {
-			  "section":"To stop recording the message path through the flow, click the Return flow to edit mode icon <img src='http://ot4i.github.io/ot4i.tutorials/dist/images/icons/iib/stopFlowExerciser.png' alt='Return flow to edit mode' />."
+			  "section":"To stop recording the message path through the flow, click the Return flow to edit mode icon <img src='http://ot4i.github.io/iib-tutorials/images/icons/iib/stopFlowExerciser.png' alt='Return flow to edit mode' />."
 			  }
             ]
           },
