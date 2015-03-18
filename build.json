@@ -1,0 +1,7 @@
+{    
+  "main" : {
+    "project" : "LargeMessages",
+    "artefact": "LargeMessages.msgflow",
+    "editor"  : "flow"
+  }
+}
