@@ -76,16 +76,27 @@ public class LargeMessages extends
         // get the number of SaleList elements in the message
         intNumberOfSaleListsDeclared = Integer.parseInt((String)xmlnsc.getFirstElementByPath(ROOT_LEVEL + "/" + HEADER + "/" + REPEATING_ELEMENT_COUNT).getValue());
         
-        // find the repeating elements and call ProduceIndividualSaleListMessage on them.
-        // delete the already used messages
+        // Locate the first instance of the repeating element to process
+        // and declare a cursor on that element, so we can iterate over it
         MbElement refEnvironmentSaleList = xmlnsc.getFirstElementByPath(ROOT_LEVEL + "/" + REPEATING_ELEMENT);
+
+        // now we have the start of the list, iterate over each element
+        // find the repeating elements and call ProduceIndividualSaleListMessage on them.
         while (refEnvironmentSaleList != null){
         	intNumberOfSaleListsFound++;
+
+        	// Note this line!
+        	// This frees up any memory held by the parser from the last time around the loop.
+        	// If you don't explicitly delete the parsed input element, the memory associated with parsing it
+        	// is not freed until the whole message has finished being processed.
+        	// For a large document this will be a significant overhead, and since we do not need random
+        	// access to this document we can safely free this up now.
         	if (intNumberOfSaleListsFound > 1) refEnvironmentSaleList.getPreviousSibling().delete();
-        	
+
+        	// Call a procedure to transform the current element, and send it down the flow
         	ProduceIndividualSaleListMessage(inAssembly, out, refEnvironmentSaleList);
         	
-        	// find the next REPEATING_ELEMENT
+        	// find the next REPEATING_ELEMENT at this level of the message tree, if there is one
         	do {
         		refEnvironmentSaleList = refEnvironmentSaleList.getNextSibling();
         	}
@@ -93,35 +104,60 @@ public class LargeMessages extends
         }
 	}
 	
+	/**
+	 * Create and send a complete message containing a SaleList element and its Number
+	 * by extracting part of an input message
+	 * 
+	 * @param inAssembly - pointer to the complete tree that came into this node
+	 * @param out        - reference to the output terminal which the message slice should be sent to
+	 * @param inSaleList - the current position in the input message, which is to be transformed and sent out
+	 * @throws MbException
+	 */
 	public void ProduceIndividualSaleListMessage(MbMessageAssembly inAssembly, MbOutputTerminal out, MbElement inSaleList) throws MbException {
-		// creates a message containing a SaleList element and it's Number
+
+		// creates a new output message to hold the transformed data
 		MbMessage outMessage = new MbMessage();
+		
+		// prepare the message headers so they have valid content for the output nodes we want to use
 		copyMessageHeaders(outMessage);
 		
+		// take the elements we want out of the input message, and put them in the right place in the new output
 		MbElement outElement = outMessage.getRootElement().createElementAsLastChild("XMLNSC");
-		
 		MbElement outRoot = outElement.createElementAsLastChild(MbXMLNSC.FOLDER, ROOT_LEVEL, null);
 		outRoot.createElementAsLastChild(MbXMLNSC.FOLDER, "Number", "" + intNumberOfSaleListsFound);
 		outRoot.createElementAsLastChild(MbXMLNSC.FOLDER, REPEATING_ELEMENT, null).copyElementTree(inSaleList);
 		
-		// propagate the message
+		// create a wrapper object so this can be sent to a terminal
 		MbMessageAssembly outAssembly = new MbMessageAssembly(inAssembly, outMessage);
 		
-		// setting the number of the outputs, so they are all in a separate file
+		// pass data down the flow using LocalEnvironment
+		// this field controls the output file name for this slice of the input data
+		// this value replaces the * in the output file name
 		MbMessage localEnv = outAssembly.getLocalEnvironment();
 		MbElement filenameWildCard = localEnv.getRootElement().getFirstElementByPath("/Wildcard/WildcardMatch");
 		filenameWildCard.setValue(intNumberOfSaleListsFound);
 
 		//TODO error handling...
-		
+
+		// propagate the transformed element down the flow
+		// returns once all downstream nodes have done their work
         out.propagate(outAssembly);
 	}
 	
+	/**
+	 * Creates a record of all the work done, and sends it out
+	 *  
+	 * @param inAssembly  - the complete input tree
+	 * @param alt         - the output terminal to which the final notification will be propagated
+	 * @throws MbException
+	 */
 	public void ProduceProcessingCompleteNotification(MbMessageAssembly inAssembly, MbOutputTerminal alt) throws MbException {
-		// outputs the final statement of the work done
+
+		// create a new output message, and initialise it with basic headers
 		MbMessage outMessage = new MbMessage();
 		copyMessageHeaders(outMessage);
 		
+		// fill in data to say what has done, using class variables
 		MbElement outElement = outMessage.getRootElement().createElementAsLastChild("XMLNSC");
 		MbElement outRoot = outElement.createElementAsLastChild(MbXMLNSC.FOLDER, COMPLETION_ROOT, null);
 		MbElement counts = outRoot.createElementAsLastChild(MbXMLNSC.FOLDER, "Counts", null);
@@ -129,9 +165,8 @@ public class LargeMessages extends
 		counts.createElementAsLastChild(MbXMLNSC.FOLDER, "Actual", "" + intNumberOfSaleListsFound);
 		outRoot.createElementAsLastChild(MbXMLNSC.FOLDER, "Completed", new java.text.SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSSSS").format(new java.util.Date()));
 		
-		// propagate the message
-		MbMessageAssembly outAssembly = new MbMessageAssembly(inAssembly, outMessage);
-		
+		// create a wrapper and then send the message down the "alt" terminal
+		MbMessageAssembly outAssembly = new MbMessageAssembly(inAssembly, outMessage);		
         alt.propagate(outAssembly);
 	}
 
