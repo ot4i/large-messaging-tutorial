@@ -1,0 +1,340 @@
+{
+  "version":"0.5",
+  "pageContent": 
+  {
+    "comments":"Must use underscore for en-us.",
+      "navItems":
+      {
+        "_common":
+        {
+                "buttonBackToGallery": 
+				{
+                    "name": "Back To Gallery",
+					"method": "backToGallery()",
+					"idName": "backToGallery"	
+                },
+                "buttonStartTutorial": 
+				{
+                    "name": "Start Tutorial",
+					"method": "startTutorialFromDetailsScreen()",
+					"idName": "startTutorial"
+                }
+        }
+	}
+  },
+  "tutorial": 
+  { "_common":
+    {
+      "name":"Large messaging",
+      "shortDescription":"Split a large input message into individual records by using Java transformation code, in a memory-efficient manner.",
+      "durationText":"This tutorial takes approximately",
+      "durationTime":"5 minutes",
+	  "_resourceToOpenComment": "The ID of the first resource to open when the user imports the tutorial. Resource IDs are defined in the repo_metadata.json Tutorials listing on ot4i.",
+	  "resourceToOpen":"MainFlow",
+            "helpLink": 
+			{
+                "text": "IBM Knowledge Center",
+                "link": "/com.ibm.etools.msgbroker.helphome.doc/help_home_msgbroker.htm"
+            }
+    },
+    "pageDetails":
+    {
+      "topicsName":"Tutorial Topics",
+	  "_topicListComment": "A short list of product concepts or tasks demonstrated by this tutorial",
+      "topicList":
+      [
+        {
+          "title":"Transformation using Java"
+        },
+        {
+          "title":"Working with files"
+        },
+        {
+          "title":"Splitting a large message"
+        }
+      ],
+      "outcomesName":"Learning outcomes",
+      "outcomeList":
+      [
+        {
+          "title":"Use Java in a message flow to transform data."
+        }
+      ],
+      "summary":
+        {
+          "overviewName":"OVERVIEW",
+          "sections":
+          [
+            {
+            "section":"This tutorial demonstrates how to convert an input file that contains a single large XML document, and split it into multiple output files, one for each instance of a repeating element in that document."
+            },
+			{
+			"section":"This implementation uses Java transformation code and avoids fully parsing the entire input file, which minimizes the amount of memory that is consumed during processing."
+			}
+          ]
+        }
+      },
+      "pageSteps":
+      {
+        "concept":
+        {
+          "overview":
+          {
+            "name":"Overview",
+            "heading":"Overview",
+			"_overviewComment": "A short description of what this tutorial does, and what the user will do to run the tutorial.",
+            "sections":
+            [
+			  {
+              "section":"This tutorial demonstrates how to convert an input file that contains a single large XML document, and split it into multiple output files, one for each instance of a repeating element in that document. It uses Java transformation code and avoids fully parsing the entire input file, which minimizes the amount of memory that is consumed during processing."
+              },
+              {
+              "section":"The solution uses a JavaCompute node to process a large input XML message that contains sales data, in the form of a list of SaleList child XML elements. The input message is split into 10 individual messages by creating a new message from each SaleList child element. In this tutorial, FileInput and FileOutput nodes are used to handle the input and output messages."
+              },
+              {
+              "section":"You will import the LargeMessaging application to your Integration Toolkit workspace, deploy it to your default integration server, and create a test  message in an input directory that will be processed by the flow. You will record the path taken through the message flow by using the Flow Exerciser."
+              }
+            ]
+          },
+          "helpLinks": 
+			{
+			"title": "Find out more",
+			"_helpLinksComment": "Helplinks that have a type:web attribute are rendered as web links. Otherwise, links are assumed to be to embedded Help topics in the Knowledge Center.",
+			"details" :
+			  [
+				 {
+				"title":"Knowledge Center link to ",
+				"description":"Writing Java",
+				"link":"com.ibm.etools.mft.doc/ac30300_.htm"
+				},
+				{
+				"title":"Knowledge Center link to ",
+				"description":"Working with files",
+				"link":"com.ibm.etools.mft.doc/ac55170_.htm"
+				}
+			  ]
+		    }
+        },
+        "create":
+        {
+          "overview":
+          {
+            "comment":"",
+            "name":"Create",
+            "heading":"Import projects",
+			"_createComment": "A description of what will happen when the user clicks Import.",
+            "sections":
+            [
+              {
+                "section":"The Large messaging tutorial includes one project that is imported into your workspace, and the message flow is opened in the editor."
+              }
+            ]
+          },
+          "helpLinks": 
+			{
+			"title": "Find out more",
+			"_helpLinksComment": "Helplinks that have a type:web attribute are rendered as web links. Otherwise, links are assumed to be to embedded Help topics in the Knowledge Center.",
+			"details" :
+			  [
+				 {
+				"title":"Knowledge Center link to ",
+				"description":"Writing Java",
+				"link":"com.ibm.etools.mft.doc/ac30300_.htm"
+				},
+				{
+				"title":"Knowledge Center link to ",
+				"description":"Working with files",
+				"link":"com.ibm.etools.mft.doc/ac55170_.htm"
+				}
+			  ]
+		    },
+                "actions": 
+				{
+                    "title": "Create Actions",
+                    "details": 
+					[
+                        {
+                            "name": "Import",
+                            "method": "importArtifacts()"
+                        }
+                    ]
+                }
+        },
+        "prepare":
+        {
+          "overview":
+          {
+            "name":"Prepare",
+            "heading":"Prepare your development environment",
+			"_prepareComment": "A description of what just happened when the user clicked Import, and what will happen when the user clicks Deploy.",
+            "sections":
+            [
+              {
+                "section":"The Large messaging application has been imported into your workspace as LargeMessaging, and is shown in the Application Development view of your workspace. The main message flow opens in the message flow editor."
+              },
+              {
+                "section":"The FileInput node MessageWithRepeatingElements monitors an input directory on the file system for files to process. By default, this is set to <code>C:\\temp_in</code>.",
+				"steps": 
+				{
+                "type":"ordered",
+                "details":
+                  [
+                    { 
+                      "name":"",
+                      "details":"Create the input directory <code>C:\\temp_in</code> on your file system.",
+					  "substeps": 
+						{
+							"type": "unordered",
+							"details": 
+							[
+								{
+									"details": "If you are using Linux, first change the Input directory property of the MessageWithRepeatingElements node."
+								}
+							]
+						}
+                    }
+                  ]
+                }
+              },
+			  {
+			  "section":"In the message flow, the memory-efficient record splitting is performed by the JavaCompute node labelled ProduceMessageSlicesFromRepeatingElements. You can double-click this node to see the Java code that is run."
+			  }
+            ]
+          },
+          "helpLinks": 
+			{
+			"title": "Find out more",
+			"_helpLinksComment": "Helplinks that have a type:web attribute are rendered as web links. Otherwise, links are assumed to be to embedded Help topics in the Knowledge Center.",
+			"details" :
+			  [
+				 {
+				"title":"Knowledge Center link to ",
+				"description":"Writing Java",
+				"link":"com.ibm.etools.mft.doc/ac30300_.htm"
+				},
+				{
+				"title":"Knowledge Center link to ",
+				"description":"Working with files",
+				"link":"com.ibm.etools.mft.doc/ac55170_.htm"
+				}
+			  ]
+		   },
+			"actions-removed": 
+				{
+                    "title": "Prepare Actions",
+                    "details": 
+					[
+                        {
+                            "name": "Deploy",
+                            "method": "deployArtifacts()"
+                        }
+                    ]
+                }
+        },
+        "run":
+        {
+          "cleanupName":"Clean up", 
+          "cleanupDescription":"Clean up and remove any changes made by the tutorial.", 
+          "overview":
+          {
+            "name":"Run",
+            "heading":"Follow these steps to complete the tutorial",
+			"_runComment": "The full steps for the user to run through the tutorial. Use 'sections' to render paragraphs, 'steps' with a type of 'ordered' or 'unordered' to render HTML lists, and 'substeps' to render nested lists.",
+            "sections":
+            [
+              {
+              "section":"The LargeMessaging application is shown in the Application Development view of your workspace, and the LargeMessages main message flow is shown in the message flow editor.", 
+                "steps":
+                {
+                "type":"ordered",
+                "details":
+                  [
+					{
+                      "details":"In the message flow editor, click the Flow Exerciser record icon <img src='http://ot4i.github.io/iib-tutorials/images/icons/iib/startFlowExerciser.png' alt='' /> to start recording the message path through the flow.",
+					  "substeps":
+					   { "type": "unordered",
+						  "details":
+							[
+							  {
+								"details":"The application is deployed to your default integration server, and the message flow is then running on your integration server and ready to process messages."
+							  },
+							  {
+								"details":"When the message is processed, you will see the path taken through the flow."
+							  }
+							]
+					   }
+                    },
+					{ 
+                      "details":"Create an input directory on your file system that matches the directory that is monitored by the MessageWithRepeatingElements node.",
+                      "details":"Copy the test XML message from <code>&lt;Integration Toolkit workspace&gt;/Large Messages/inputSalesList.xml</code> to the input directory that you created on your file system.",
+					  "substeps":
+					   { "type": "unordered",
+						  "details":
+							[
+							  {
+								"details":"The file is processed by the message flow and deleted."
+							  }
+							]
+					   }
+                    },
+					{ 
+                      "details":"In the Integration Toolkit Flow Exerciser toolbar, click the View Path icon <img src='http://ot4i.github.io/iib-tutorials/images/icons/iib/viewPath.png' alt='View path' /> to highlight the message path through the message flow. You can click on any highlighted connection to see the message data that passed through that connection."
+                    }
+                  ]
+                }
+              },
+			  {
+			  "section":"The input data has been split into 10 messages propagated to the Out terminal of the JavaCompute node named ProduceMessageSlicesFromRepeatingElement. You can double-click on the JavaCompute node to view the Java code that is executed to process the input message."
+			  },
+			  {
+			  "section":"To observe how the Java code works on the message tree, you can step through the code by using the Flow debugger while the flow processes the input message. You should observe that elements which have already been processed are freed from memory."
+			  },
+			  {
+			  "section":"To stop recording the message path through the flow, click the Return flow to edit mode icon <img src='http://ot4i.github.io/iib-tutorials/images/icons/iib/stopFlowExerciser.png' alt='Return flow to edit mode' />."
+			  }
+            ]
+          },
+          "helpLinks": 
+			{
+			"title": "Find out more",
+			"_helpLinksComment": "Helplinks that have a type:web attribute are rendered as web links. Otherwise, links are assumed to be to embedded Help topics in the Knowledge Center.",
+			"details" :
+			  [
+				 {
+				"title":"Knowledge Center link to ",
+				"description":"Writing Java",
+				"link":"com.ibm.etools.mft.doc/ac30300_.htm"
+				},
+				{
+				"title":"Knowledge Center link to ",
+				"description":"Working with files",
+				"link":"com.ibm.etools.mft.doc/ac55170_.htm"
+				},
+				{
+				"title":"Knowledge Center link to ",
+				"description":"Testing your message flow by using the Flow exerciser",
+				"link":"com.ibm.etools.mft.doc/rt26110_.htm"
+				},
+				{
+				"title":"Knowledge Center link to ",
+				"description":"Testing your message flow by using the Flow debugger",
+				"link":"com.ibm.etools.mft.doc/ag11080_.htm"
+				}
+			  ]
+		    },
+				"exits": 
+				{
+					"title": "Run Exits",
+					"details": 
+					[
+						{
+							"name": "Clean Up",
+							"description": "Clean up and remove any changes in your workspace made by the tutorial.",
+							"method": "cleanUp()"
+						}
+					]
+				}
+        } 
+      }
+    }
+  }
