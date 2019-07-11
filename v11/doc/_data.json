@@ -1,12 +1,12 @@
 {
-  "version":"0.5",
-  "pageContent": 
-  {
-    "comments":"Must use underscore for en-us.",
-      "navItems":
-      {
-        "_common":
-        {
+    "version": "0.1",
+    "pageContent": 
+	{
+        "_comments": "object that contains data for page labels, buttons, etc.",
+        "navItems": 
+		{
+            "_common": 
+			{
                 "buttonBackToGallery": 
 				{
                     "name": "Back To Gallery",
@@ -18,14 +18,20 @@
                     "name": "Start Tutorial",
 					"method": "startTutorialFromDetailsScreen()",
 					"idName": "startTutorial"
+                },
+				"buttonViewDetails": 
+				{
+                    "name": "View Details",
+					"method": "viewDetails()",
+					"idName": "stepsViewDetails"	
                 }
+            }
         }
-	}
-  },
+},
   "tutorial": 
   { "_common":
     {
-      "name":"Large messaging",
+      "name":"Using a JavaCompute node to split up a large input file",
       "shortDescription":"Split a large input message into individual records by using Java transformation code, in a memory-efficient manner.",
       "durationText":"This tutorial takes approximately",
       "durationTime":"5 minutes",
@@ -85,14 +91,14 @@
 			"_overviewComment": "A short description of what this tutorial does, and what the user will do to run the tutorial.",
             "sections":
             [
-			  {
+			  	  {
               "section":"This tutorial demonstrates how to convert an input file that contains a single large XML document, and split it into multiple output files, one for each instance of a repeating element in that document. It uses Java transformation code and avoids fully parsing the entire input file, which minimizes the amount of memory that is consumed during processing."
               },
               {
               "section":"The solution uses a JavaCompute node to process a large input XML message that contains sales data, in the form of a list of SaleList child XML elements. The input message is split into 10 individual messages by creating a new message from each SaleList child element. In this tutorial, FileInput and FileOutput nodes are used to handle the input and output messages."
               },
               {
-              "section":"You will import the LargeMessaging application to your Integration Toolkit workspace, deploy it to your default integration server, and create a test  message in an input directory that will be processed by the flow. You will record the path taken through the message flow by using the Flow Exerciser."
+              "section":"You will import the LargeMessages application to your Toolkit workspace, deploy it to an integration node owned server, and create a test  message in an input directory that will be processed by the flow. You will record the path taken through the message flow by using the Flow Exerciser."
               }
             ]
           },
@@ -168,12 +174,9 @@
             "heading":"Prepare your development environment",
 			"_prepareComment": "A description of what just happened when the user clicked Import, and what will happen when the user clicks Deploy.",
             "sections":
-            [
+            [              
               {
-                "section":"The Large messaging application has been imported into your workspace as LargeMessaging, and is shown in the Application Development view of your workspace. The main message flow opens in the message flow editor."
-              },
-              {
-                "section":"The FileInput node MessageWithRepeatingElements monitors an input directory on the file system for files to process. By default, this is set to <code>C:\\temp_in</code>.",
+                "section":"After import, the application named <span class='application'>LargeMessages</span> will be available in your workspace, and should now be shown in the Application Development view. There is a single message flow in the application also named <span class='application'>LargeMessages</span> which should already have been opened for you. Inside the flow the FileInput node named MessageWithRepeatingElements monitors an input directory on the file system for files to process. By default, this is set to <code>C:\\temp_in</code>.",
 				"steps": 
 				{
                 "type":"ordered",
@@ -192,13 +195,13 @@
 								}
 							]
 						}
-                    }
+                    },
+					{
+						"details": "In the message flow, the memory-efficient record splitting is performed by the JavaCompute node labelled ProduceMessageSlicesFromRepeatingElements. You can double-click this node to see the Java code that is run."
+					}
                   ]
                 }
-              },
-			  {
-			  "section":"In the message flow, the memory-efficient record splitting is performed by the JavaCompute node labelled ProduceMessageSlicesFromRepeatingElements. You can double-click this node to see the Java code that is run."
-			  }
+              }
             ]
           },
           "helpLinks": 
@@ -243,14 +246,14 @@
             "sections":
             [
               {
-              "section":"The LargeMessaging application is shown in the Application Development view of your workspace, and the LargeMessages main message flow is shown in the message flow editor.", 
+              "section":"The following instructions assume you have a node-owned integration server already available which you will use in conjunction with the Flow Exerciser:", 
                 "steps":
                 {
                 "type":"ordered",
                 "details":
                   [
 					{
-                      "details":"In the message flow editor, click the Flow Exerciser record icon <img src='http://ot4i.github.io/iib-tutorials/images/icons/iib/startFlowExerciser.png' alt='' /> to start recording the message path through the flow.",
+                      "details":"In the message flow editor, click the Flow Exerciser record icon <img src='https://ot4i.github.io/iib-tutorials/images/icons/iib/startFlowExerciser.png' alt='' /> to start recording the message path through the flow.",
 					  "substeps":
 					   { "type": "unordered",
 						  "details":
@@ -266,7 +269,7 @@
                     },
 					{ 
                       "details":"Create an input directory on your file system that matches the directory that is monitored by the MessageWithRepeatingElements node.",
-                      "details":"Copy the test XML message from <code>&lt;Integration Toolkit workspace&gt;/Large Messages/inputSalesList.xml</code> to the input directory that you created on your file system.",
+                      "details":"Copy the test XML message from <code>&lt;Toolkit workspace&gt;/Large Messages/inputSalesList.xml</code> to the input directory that you created on your file system.",
 					  "substeps":
 					   { "type": "unordered",
 						  "details":
@@ -278,19 +281,13 @@
 					   }
                     },
 					{ 
-                      "details":"In the Integration Toolkit Flow Exerciser toolbar, click the View Path icon <img src='http://ot4i.github.io/iib-tutorials/images/icons/iib/viewPath.png' alt='View path' /> to highlight the message path through the message flow. You can click on any highlighted connection to see the message data that passed through that connection."
+                      "details":"In the Flow Exerciser toolbar, click the View Path icon <img src='https://ot4i.github.io/iib-tutorials/images/icons/iib/viewPath.png' alt='View path' /> to highlight the message path through the message flow. You can click on any highlighted connection to see the message data that passed through that connection."
                     }
                   ]
                 }
               },
 			  {
-			  "section":"The input data has been split into 10 messages propagated to the Out terminal of the JavaCompute node named ProduceMessageSlicesFromRepeatingElement. You can double-click on the JavaCompute node to view the Java code that is executed to process the input message."
-			  },
-			  {
-			  "section":"To observe how the Java code works on the message tree, you can step through the code by using the Flow debugger while the flow processes the input message. You should observe that elements which have already been processed are freed from memory."
-			  },
-			  {
-			  "section":"To stop recording the message path through the flow, click the Return flow to edit mode icon <img src='http://ot4i.github.io/iib-tutorials/images/icons/iib/stopFlowExerciser.png' alt='Return flow to edit mode' />."
+			  "section":"The input data has been split into 10 messages propagated to the Out terminal of the JavaCompute node named ProduceMessageSlicesFromRepeatingElement. You can double-click on the JavaCompute node to view the Java code that is executed to process the input message. To observe how the Java code works on the message tree, you can step through the code by using the Flow debugger while the flow processes the input message. You should observe that elements which have already been processed are freed from memory. To stop recording the message path through the flow, click the Return flow to edit mode icon <img src='https://ot4i.github.io/iib-tutorials/images/icons/iib/stopFlowExerciser.png' alt='Return flow to edit mode' />."
 			  }
             ]
           },
@@ -337,4 +334,4 @@
         } 
       }
     }
-  }
+}
