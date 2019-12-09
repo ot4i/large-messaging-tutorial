@@ -122,21 +122,29 @@
 						  	<h4>Prepare your development environment</h4>
 						    
 						    
-								<p> After import, the application named <span class="application">LargeMessages</span> will be available in your workspace, and should now be shown in the Application Development view. There is a single message flow in the application also named <span class="application">LargeMessages</span> which should already have been opened for you. Inside the flow the FileInput node named MessageWithRepeatingElements monitors an input directory on the file system for files to process. By default, this is set to <code>C:\temp_in</code>. </p>
+								<p> After import, the application named <span class="application">LargeMessages</span> will be available in your workspace, and should now be shown in the Application Development view. There is a single message flow in the application also named <span class="application">LargeMessages</span> which should already have been opened for you. Inside the flow the FileInput node named MessageWithRepeatingElements monitors an input directory on the file system for files to process. By default, this is set to <code>C:\temp_in</code>. The message flow also includes several FileOutput nodes which by default are set to write to <code>C:\temp_out</code>. </p>
 								
 								
 									
 									<ol>
 									
 									
-										<li> Create the input directory <code>C:\temp_in</code> on your file system.
+										<li> Assuming you are using Windows, create the input directory <code>C:\temp_in</code> and the output directory <code>C:\temp_out</code> on your file system. If you are using Linux, you will need to create directories in a location of your choice, and then change the following flow node properties:
 										
 										
 											
 											<ul>
 											
 												
-													<li> If you are using Linux, first change the Input directory property of the MessageWithRepeatingElements node.</li>
+													<li> The <span class="application">Input directory</span> property on the <span class="application">Basic</span> tab of the <span class="application">MessageWithRepeatingElements</span> node.</li>
+												
+													<li> The <span class="application">Directory</span> property on the <span class="application">Basic</span> tab of the <span class="application">RepeatedElementSlices</span> node.</li>
+												
+													<li> The <span class="application">Directory</span> property on the <span class="application">Basic</span> tab of the <span class="application">MessageSlicingComplete</span> node.</li>
+												
+													<li> The <span class="application">Directory</span> property on the <span class="application">Basic</span> tab of the <span class="application">General Failure</span> node.</li>
+												
+													<li> The <span class="application">Directory</span> property on the <span class="application">Basic</span> tab of the <span class="application">Malformed messages</span> node.</li>
 												
 											
 											</ul>
