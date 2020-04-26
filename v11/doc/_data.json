@@ -40,7 +40,7 @@
             "helpLink": 
 			{
                 "text": "IBM Knowledge Center",
-                "link": "/com.ibm.etools.msgbroker.helphome.doc/help_home_msgbroker.htm"
+           		"link": "https://www.ibm.com/support/knowledgecenter/en/SSTTDS_11.0.0/com.ibm.ace.home.doc/help_home.htm"
             }
     },
     "pageDetails":
@@ -111,12 +111,14 @@
 				 {
 				"title":"Knowledge Center link to ",
 				"description":"Writing Java",
-				"link":"com.ibm.etools.mft.doc/ac30300_.htm"
+				"link":"https://www.ibm.com/support/knowledgecenter/en/SSTTDS_11.0.0/com.ibm.etools.mft.doc/ac30300_.htm",
+				"type":"web"
 				},
 				{
 				"title":"Knowledge Center link to ",
 				"description":"Working with files",
-				"link":"com.ibm.etools.mft.doc/ac55170_.htm"
+				"link":"https://www.ibm.com/support/knowledgecenter/en/SSTTDS_11.0.0/com.ibm.etools.mft.doc/ac55170_.htm",
+				"type":"web"
 				}
 			  ]
 		    }
@@ -145,12 +147,14 @@
 				 {
 				"title":"Knowledge Center link to ",
 				"description":"Writing Java",
-				"link":"com.ibm.etools.mft.doc/ac30300_.htm"
+				"link":"https://www.ibm.com/support/knowledgecenter/en/SSTTDS_11.0.0/com.ibm.etools.mft.doc/ac30300_.htm",
+				"type":"web"
 				},
 				{
 				"title":"Knowledge Center link to ",
 				"description":"Working with files",
-				"link":"com.ibm.etools.mft.doc/ac55170_.htm"
+				"link":"https://www.ibm.com/support/knowledgecenter/en/SSTTDS_11.0.0/com.ibm.etools.mft.doc/ac55170_.htm",
+				"type":"web"
 				}
 			  ]
 		    },
@@ -225,12 +229,14 @@
 				 {
 				"title":"Knowledge Center link to ",
 				"description":"Writing Java",
-				"link":"com.ibm.etools.mft.doc/ac30300_.htm"
+				"link":"https://www.ibm.com/support/knowledgecenter/en/SSTTDS_11.0.0/com.ibm.etools.mft.doc/ac30300_.htm",
+				"type":"web"
 				},
 				{
 				"title":"Knowledge Center link to ",
 				"description":"Working with files",
-				"link":"com.ibm.etools.mft.doc/ac55170_.htm"
+				"link":"https://www.ibm.com/support/knowledgecenter/en/SSTTDS_11.0.0/com.ibm.etools.mft.doc/ac55170_.htm",
+				"type":"web"
 				}
 			  ]
 		   },
@@ -312,22 +318,26 @@
 				 {
 				"title":"Knowledge Center link to ",
 				"description":"Writing Java",
-				"link":"com.ibm.etools.mft.doc/ac30300_.htm"
+				"link":"https://www.ibm.com/support/knowledgecenter/en/SSTTDS_11.0.0/com.ibm.etools.mft.doc/ac30300_.htm",
+				"type":"web"
 				},
 				{
 				"title":"Knowledge Center link to ",
 				"description":"Working with files",
-				"link":"com.ibm.etools.mft.doc/ac55170_.htm"
+				"link":"https://www.ibm.com/support/knowledgecenter/en/SSTTDS_11.0.0/com.ibm.etools.mft.doc/ac55170_.htm",
+				"type":"web"
 				},
 				{
 				"title":"Knowledge Center link to ",
 				"description":"Testing your message flow by using the Flow exerciser",
-				"link":"com.ibm.etools.mft.doc/rt26110_.htm"
+				"link":"https://www.ibm.com/support/knowledgecenter/en/SSTTDS_11.0.0/com.ibm.etools.mft.doc/rt26110_.htm",
+				"type":"web"
 				},
 				{
 				"title":"Knowledge Center link to ",
 				"description":"Testing your message flow by using the Flow debugger",
-				"link":"com.ibm.etools.mft.doc/ag11080_.htm"
+				"link":"https://www.ibm.com/support/knowledgecenter/en/SSTTDS_11.0.0/com.ibm.etools.mft.doc/ag11080_.htm",
+				"type":"web"
 				}
 			  ]
 		    },
