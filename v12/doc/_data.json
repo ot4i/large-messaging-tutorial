@@ -286,8 +286,10 @@
 					   }
                     },
 					{ 
-                      "details":"Create an input directory on your file system that matches the directory that is monitored by the MessageWithRepeatingElements node.",
-                      "details":"Copy the test XML message from <code>&lt;Toolkit workspace&gt;/Large Messages/inputSalesList.xml</code> to the input directory that you created on your file system.",
+                      "details":"Create an input directory on your file system that matches the directory that is monitored by the MessageWithRepeatingElements node."
+					},
+					{
+                      "details":"Copy the test XML message from <code>&lt;Toolkit workspace&gt;\\Large Messages\\inputSalesList.xml</code> to the input directory that you created on your file system.",
 					  "substeps":
 					   { "type": "unordered",
 						  "details":
