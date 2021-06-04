@@ -39,8 +39,8 @@
 	  "resourceToOpen":"MainFlow",
             "helpLink": 
 			{
-                "text": "IBM Knowledge Center",
-           		"link": "https://www.ibm.com/support/knowledgecenter/en/SSTTDS_11.0.0/com.ibm.ace.home.doc/help_home.htm"
+                "text": "IBM Documentation",
+           		"link": "https://www.ibm.com/docs/SSTTDS_12.0/com.ibm.etools.mft.doc/acesw_home.html"
             }
     },
     "pageDetails":
@@ -109,15 +109,15 @@
 			"details" :
 			  [
 				 {
-				"title":"Knowledge Center link to ",
+				"title":"IBM Documentation link to ",
 				"description":"Writing Java",
-				"link":"https://www.ibm.com/support/knowledgecenter/en/SSTTDS_11.0.0/com.ibm.etools.mft.doc/ac30300_.htm",
+				"link":"https://www.ibm.com/docs/SSTTDS_12.0/com.ibm.etools.mft.doc/ac30300_.htm",
 				"type":"web"
 				},
 				{
-				"title":"Knowledge Center link to ",
+				"title":"IBM Documentation link to ",
 				"description":"Working with files",
-				"link":"https://www.ibm.com/support/knowledgecenter/en/SSTTDS_11.0.0/com.ibm.etools.mft.doc/ac55170_.htm",
+				"link":"https://www.ibm.com/docs/SSTTDS_12.0/com.ibm.etools.mft.doc/ac55170_.htm",
 				"type":"web"
 				}
 			  ]
@@ -145,15 +145,15 @@
 			"details" :
 			  [
 				 {
-				"title":"Knowledge Center link to ",
+				"title":"IBM Documentation link to ",
 				"description":"Writing Java",
-				"link":"https://www.ibm.com/support/knowledgecenter/en/SSTTDS_11.0.0/com.ibm.etools.mft.doc/ac30300_.htm",
+				"link":"https://www.ibm.com/docs/SSTTDS_12.0/com.ibm.etools.mft.doc/ac30300_.htm",
 				"type":"web"
 				},
 				{
-				"title":"Knowledge Center link to ",
+				"title":"IBM Documentation link to ",
 				"description":"Working with files",
-				"link":"https://www.ibm.com/support/knowledgecenter/en/SSTTDS_11.0.0/com.ibm.etools.mft.doc/ac55170_.htm",
+				"link":"https://www.ibm.com/docs/SSTTDS_12.0/com.ibm.etools.mft.doc/ac55170_.htm",
 				"type":"web"
 				}
 			  ]
@@ -227,15 +227,15 @@
 			"details" :
 			  [
 				 {
-				"title":"Knowledge Center link to ",
+				"title":"IBM Documentation link to ",
 				"description":"Writing Java",
-				"link":"https://www.ibm.com/support/knowledgecenter/en/SSTTDS_11.0.0/com.ibm.etools.mft.doc/ac30300_.htm",
+				"link":"https://www.ibm.com/docs/SSTTDS_12.0/com.ibm.etools.mft.doc/ac30300_.htm",
 				"type":"web"
 				},
 				{
-				"title":"Knowledge Center link to ",
+				"title":"IBM Documentation link to ",
 				"description":"Working with files",
-				"link":"https://www.ibm.com/support/knowledgecenter/en/SSTTDS_11.0.0/com.ibm.etools.mft.doc/ac55170_.htm",
+				"link":"https://www.ibm.com/docs/SSTTDS_12.0/com.ibm.etools.mft.doc/ac55170_.htm",
 				"type":"web"
 				}
 			  ]
@@ -318,27 +318,27 @@
 			"details" :
 			  [
 				 {
-				"title":"Knowledge Center link to ",
+				"title":"IBM Documentation link to ",
 				"description":"Writing Java",
-				"link":"https://www.ibm.com/support/knowledgecenter/en/SSTTDS_11.0.0/com.ibm.etools.mft.doc/ac30300_.htm",
+				"link":"https://www.ibm.com/docs/SSTTDS_12.0/com.ibm.etools.mft.doc/ac30300_.htm",
 				"type":"web"
 				},
 				{
-				"title":"Knowledge Center link to ",
+				"title":"IBM Documentation link to ",
 				"description":"Working with files",
-				"link":"https://www.ibm.com/support/knowledgecenter/en/SSTTDS_11.0.0/com.ibm.etools.mft.doc/ac55170_.htm",
+				"link":"https://www.ibm.com/docs/SSTTDS_12.0/com.ibm.etools.mft.doc/ac55170_.htm",
 				"type":"web"
 				},
 				{
-				"title":"Knowledge Center link to ",
+				"title":"IBM Documentation link to ",
 				"description":"Testing your message flow by using the Flow exerciser",
-				"link":"https://www.ibm.com/support/knowledgecenter/en/SSTTDS_11.0.0/com.ibm.etools.mft.doc/rt26110_.htm",
+				"link":"https://www.ibm.com/docs/SSTTDS_12.0/com.ibm.etools.mft.doc/rt26110_.htm",
 				"type":"web"
 				},
 				{
-				"title":"Knowledge Center link to ",
+				"title":"IBM Documentation link to ",
 				"description":"Testing your message flow by using the Flow debugger",
-				"link":"https://www.ibm.com/support/knowledgecenter/en/SSTTDS_11.0.0/com.ibm.etools.mft.doc/ag11080_.htm",
+				"link":"https://www.ibm.com/docs/SSTTDS_12.0/com.ibm.etools.mft.doc/ag11080_.htm",
 				"type":"web"
 				}
 			  ]
